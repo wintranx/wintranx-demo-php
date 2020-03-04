@@ -1,0 +1,161 @@
+<div class="result-form-body">
+    <div class="r-f-b-block">
+        <p class="title">Certificate</p>
+        <p class="detail">
+            <span class="d-label">Account Id</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="accountId" value="ACT90001"></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">Notify Url</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="notifyUrl" value="http://192.168.10.17:8551/notice/success"></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">Order Id</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="merOrderId" value=""></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">Trade Id</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="merTradeId" value=""></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">Currency</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="currency" value=""></span>
+        </p>
+        <p class="detail detail-exp">
+            Example：USD EUR GBP AUD CHF MYR IDR JPY HKD CAD SGD NZD THB KRW CNY
+        </p>
+        <p class="detail">
+            <span class="d-label">Amount</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="amount" value="1.00"></span>
+        </p>
+    </div>
+    <div class="r-f-b-block">
+        <p class="title">Card Info</p>
+        <p class="detail">
+            <span class="d-label">First Name</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="firstName" value="Jesse"></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">Last Name</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="lastName" value="Li"></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">Card Number</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="number" value="4000000000000002"></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">Expiry Month</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="expiryMonth" value="12"></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">Expiry Year</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="expiryYear" value="2020"></span>
+        </p>
+        <p class="detail">
+            <span class="d-label">CVC</span>
+            <span class="d-symbol"> = </span>
+            <span class="d-input"><input type="text" id="cvc" value="001"></span>
+        </p>
+    </div>
+    <div class="r-f-b-block">
+        <p class="title">Other
+            <a data-toggle="collapse" data-parent="#accordion" class="collapse-btn" href="#collapseThree" aria-expanded="false">
+                <i class="fa fa-chevron-up"></i>
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </p>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <p class="detail">
+                <span class="d-label">Basket</span>
+                <span class="d-symbol"> = </span>
+                <span class="d-input"><input type="text" id="basket" value='[{"amountPerItem":"79.00","quantity":"3","productName":"goodname1","productSku":"sku100001"},{"amountPerItem":"67.00","quantity":"4","productName":"goodname2","productSku":"sku100002"}]'></span>
+            </p>
+            <p class="detail">
+                <span class="d-label">Shopper IP</span>
+                <span class="d-symbol"> = </span>
+                <span class="d-input"><input type="text" id="shopperIP" value='192.168.101.117'></span>
+            </p>
+            <p class="detail">
+                <span class="d-label">Customer Data</span>
+                <span class="d-symbol"> = </span>
+                <span class="d-input"><input type="text" id="customerData" value='CSDUSD'></span>
+            </p>
+            <p class="detail">
+                <span class="d-label">version</span>
+                <span class="d-symbol"> = </span>
+                <span class="d-input"><input type="text" id="version" value='1.0'></span>
+            </p>
+            <p class="detail">
+                <span class="d-label">Delivery Address</span>
+                <span class="d-symbol"> = </span>
+                <span class="d-input"><input type="text" id="deliveryAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
+            </p>
+            <p class="detail">
+                <span class="d-label">Billing Address</span>
+                <span class="d-symbol"> = </span>
+                <span class="d-input"><input type="text" id="billingAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
+            </p>
+            <p class="detail">
+                <span class="d-label">Mer Describe</span>
+                <span class="d-symbol"> = </span>
+                <span class="d-input"><input type="text" id="merDescribe" value='{"merchantPhone":"15821900322","merchantName":"merchantName7890"}'></span>
+            </p>
+        </div>
+        
+    </div>
+    <div class="r-f-b-block">
+        <button type="button" class="btn btn-primary" id="sendPost">发送请求</button>
+    </div>
+    <script>
+        $(function () {
+    
+            $('#merOrderId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
+            $('#merTradeId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
+            $('#currency').val(getCurrency());
+            $('#amount').val(`${getRandomNumber(100, 1)}.00`);
+    
+                $('#sendPost').on('click', () => {
+                    $('#sendPost').hide();
+                    let data = {
+                        accountId: $('#accountId').val(),
+                        merOrderId: $('#merOrderId').val(),
+                        merTradeId: $('#merTradeId').val(),
+                        amount: {
+                            currency: $('#currency').val(),
+                            value: $('#amount').val(),
+                        },
+                        card: {
+                            firstName: $('#firstName').val(),
+                            lastName: $('#lastName').val(),
+                            number: $('#number').val(),
+                            cvc: $('#cvc').val(),
+                            expiryMonth: $('#expiryMonth').val(),
+                            expiryYear: $('#expiryYear').val(),
+                        },
+                        basket: $('#basket').val(),
+                        shopperIP: $('#shopperIP').val(),
+                        customerData: $('#customerData').val(),
+                        version: $('#version').val(),
+                        deliveryAddress: JSON.parse($('#deliveryAddress').val()),
+                        notifyUrl: $('#notifyUrl').val(),
+                        billingAddress: JSON.parse($('#billingAddress').val()),
+                        merDescribe: JSON.parse($('#merDescribe').val()),
+                    };
+    
+                    toAjax(data, '/payment/authorize.php')
+            });
+        })
+        </script>
+</div>
+                

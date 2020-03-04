@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/global.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="./js/plug.js"></script>
+    <title>Wintranx - Demo</title>
+</head>
+<body>
+    <div id="wintranx">
+        <div class="header clearfix">
+            <p class="title"><img src="https://business.wintranx.com/images/logo.png" class="logo">Demo - Void</p>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">切换接口 
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="/demo/authorize.html">Authorize</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/capture.html">Capture</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/refund.html">Refund</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/sale.html">Sale</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/void.html">Void</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/queryTran.html">QueryTran</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/pageSell.html">PageSell</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/sessionSale.html">SessionSale</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="row">
+                <div class="col-xs-5 result-form">
+                    <p class="title">请求参数</p>
+                    <div class="result-form-body">
+                        <div class="r-f-b-block">
+                            <p class="title">Certificate</p>
+                            <p class="detail">
+                                <span class="d-label">Account Id</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="accountId" value="ACT90001"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Notify Url</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="notifyUrl" value="http://192.168.10.17:8551/notice/success"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Trade Id</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="merTradeId" value=""></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Org TradeId Id</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="orgTradeId" value=""></span>
+                            </p>
+                        </div>
+                        <div class="r-f-b-block">
+                            <p class="title">Other</p>
+                            <div class="panel-collapse">
+                                <p class="detail">
+                                    <span class="d-label">Customer Data</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="customerData" value='CSDUSD'></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="r-f-b-block">
+                            <button type="button" class="btn btn-primary" id="sendPost">发送请求</button>
+                        </div>
+
+                        <script>
+                            $(function() {
+                                $('#merTradeId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
+                                $('#orgTradeId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
+                                $('#sendPost').on('click', () => {
+                                    $('#sendPost').hide();
+                                    let data = {
+                                        accountId: $('#accountId').val(),
+                                        merTradeId: $('#merTradeId').val(),
+                                        orgTradeId: $('#orgTradeId').val(),
+                                        customerData: $('#customerData').val(),
+                                        notifyUrl: $('#notifyUrl').val()
+                                    };
+
+                                    toAjax(data, '/payment/void.php')
+                                })
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="col-xs-7 result-panel">
+                    <p class="title">调试信息</p>
+                    <div class="result-panel-body">
+                        <p class="ng-binding" id="ng-binding"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

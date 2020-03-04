@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/global.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://secure.wintranxdev.com:9001/js/wintranx-pay.min.js"></script>
+	<script src="./js/plug.js"></script>
+    <title>Wintranx - Demo</title>
+</head>
+<body>
+    <div id="wintranx">
+        <div class="header clearfix">
+            <p class="title"><img src="https://business.wintranx.com/images/logo.png" class="logo">Demo - SessionSale</p>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">切换接口 
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="/demo/authorize.html">Authorize</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/capture.html">Capture</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/refund.html">Refund</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/sale.html">Sale</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/void.html">Void</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/queryTran.html">QueryTran</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/pageSell.html">PageSell</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/sessionSale.html">SessionSale</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="row">
+                <div class="col-xs-5 result-form">
+                    <p class="title">请求参数</p>
+                    <div class="result-form-body" id="step1">
+                        <div class="r-f-b-block">
+                            <p class="title">Certificate</p>
+                            <p class="detail">
+                                <span class="d-label">Account Id</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="accountId" value="ACT90001"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Notify Url</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="notifyUrl" value="http://192.168.10.17:8551/notice/success"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Shopper Url</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="shopperUrl" value="http://192.168.10.17:8551/notice/success"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Order Id</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="merOrderId" value=""></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Trade Id</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="merTradeId" value=""></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Currency</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="currency" value=""></span>
+                            </p>
+                            <p class="detail detail-exp">
+                                Example：USD EUR GBP AUD CHF MYR IDR JPY HKD CAD SGD NZD THB KRW CNY
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Amount</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="amount" value="1.00"></span>
+                            </p>
+                        </div>
+                        <div class="r-f-b-block">
+                            <p class="title">Card Info</p>
+                            <p class="detail">
+                                <span class="d-label">First Name</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="firstName" value="Jesse"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Last Name</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="lastName" value="Li"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Card Number</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="number" value="4000000000000002"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Expiry Month</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="expiryMonth" value="12"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Expiry Year</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="expiryYear" value="2020"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">CVC</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="cvc" value="001"></span>
+                            </p>
+                        </div>
+                        <div class="r-f-b-block">
+                            <p class="title">Other
+                                <a data-toggle="collapse" data-parent="#accordion" class="collapse-btn" href="#collapseThree" aria-expanded="false">
+                                    <i class="fa fa-chevron-up"></i>
+                                    <i class="fa fa-chevron-down"></i>
+                                </a>
+                            </p>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <p class="detail">
+                                    <span class="d-label">Basket</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="basket" value='[{"amountPerItem":"79.00","quantity":"3","productName":"goodname1","productSku":"sku100001"},{"amountPerItem":"67.00","quantity":"4","productName":"goodname2","productSku":"sku100002"}]'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Shopper IP</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="shopperIP" value='192.168.101.117'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Customer Data</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="customerData" value='CSDUSD'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">version</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="version" value='1.0'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Delivery Address</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="deliveryAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Billing Address</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="billingAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mer Describe</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merDescribe" value='{"merchantPhone":"15821900322","merchantName":"merchantName7890"}'></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="r-f-b-block">
+                            <p class="title">Mdd Data
+                                <a data-toggle="collapse" data-parent="#accordion" class="collapse-btn" href="#collapseFour" aria-expanded="false">
+                                    <i class="fa fa-chevron-up"></i>
+                                    <i class="fa fa-chevron-down"></i>
+                                </a>
+                            </p>
+                            <div id="collapseFour" class="panel-collapse collapse">
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 21</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_21" value='orderNumber123'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 22</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_22" value='PC'></span>
+                                </p>                                
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 23</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_23" value='Favorites'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 24</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_24" value='lijiaxi'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 25</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_25" value='30'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 26</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_26" value='N'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 27</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_27" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 28</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_28" value='review@cybersource.com'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 29</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_29" value='cybersource.com'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 30</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_30" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 31</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_31" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 32</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_32" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 33</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_33" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 34</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_34" value='applepay'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 35</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_35" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 36</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_36" value='512345'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 37</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_37" value='CN'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 38</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_38" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 39</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_39" value='www.shopper.com'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 40</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_40" value='Electronic Product'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 41</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_41" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 42</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_42" value='Y'></span>
+                                </p>
+                                <p class="detail">
+                                    <span class="d-label">Mdd Data 43</span>
+                                    <span class="d-symbol"> = </span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_43" value='normal'></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="r-f-b-block">
+                            <button type="button" class="btn btn-primary" id="sendPost">发送请求</button>
+                        </div>
+                    </div>
+
+                    <div class="result-form-body" id="step2" style="display: none;">
+                        <div class="r-f-b-block">
+                            <p class="title">Sample Secure</p>
+                            <p class="detail">
+                                <span class="d-label">aToken</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="aToken" value=""></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">oId</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="oId"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">First Name</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="secure_firstName" value="Jesse"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Last Name</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="secure_lastName" value="Li"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Card Number</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="secure_number" value="5123450000000008"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Expiry Month</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="secure_expiryMonth" value="05"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Expiry Year</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="secure_expiryYear" value="2021"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">CVC</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="secure_cvc" value="123"></span>
+                            </p>
+                        </div>
+                        <div class="r-f-b-block">
+                            <button type="button" class="btn btn-primary" id="sendSecure">发送请求</button>
+                        </div>
+                    </div>
+
+                    <script>
+                        $(function () {
+                            $('#toSecure').hide();
+                            $('#merOrderId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
+                            $('#merTradeId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
+                            const currency = getCurrency();
+                            if(currency === 'IDR' || currency === 'KRW' || currency === 'JPY') {
+                                $('#amount').val(getRandomNumber(100, 1));
+                            } else {
+                                $('#amount').val(`${getRandomNumber(100, 1)}.00`);
+                            }
+                            $('#currency').val(currency);
+                 
+                            $('#sendPost').on('click', () => {
+                                 $('#sendPost').hide();
+                                 let data = {
+                                     accountId: $('#accountId').val(),
+                                     merOrderId: $('#merOrderId').val(),
+                                     merTradeId: $('#merTradeId').val(),
+                                     amount: {
+                                         currency: $('#currency').val(),
+                                         value: $('#amount').val(),
+                                     },
+                                     card: {
+                                         firstName: $('#firstName').val(),
+                                         lastName: $('#lastName').val(),
+                                         number: $('#number').val(),
+                                         cvc: $('#cvc').val(),
+                                         expiryMonth: $('#expiryMonth').val(),
+                                         expiryYear: $('#expiryYear').val(),
+                                     },
+                                     basket: $('#basket').val(),
+                                     shopperIP: $('#shopperIP').val(),
+                                     customerData: $('#customerData').val(),
+                                     version: $('#version').val(),
+                                     deliveryAddress: $('#deliveryAddress').val() ? JSON.parse($('#deliveryAddress').val()) : '',
+                                     notifyUrl: $('#notifyUrl').val(),
+                                     billingAddress: $('#billingAddress').val() ? JSON.parse($('#billingAddress').val()) : '',
+                                     merDescribe: $('#merDescribe').val() ? JSON.parse($('#merDescribe').val()) : '',
+                                     shopperUrl: $('#shopperUrl').val(),
+                                     mddData: {
+                                        merchantDefinedData_mddField_21: $('#merchantDefinedData_mddField_21').val(),
+                                        merchantDefinedData_mddField_22: $('#merchantDefinedData_mddField_22').val(),
+                                        merchantDefinedData_mddField_23: $('#merchantDefinedData_mddField_23').val(),
+                                        merchantDefinedData_mddField_24: $('#merchantDefinedData_mddField_24').val(),
+                                        merchantDefinedData_mddField_25: $('#merchantDefinedData_mddField_25').val(),
+                                        merchantDefinedData_mddField_26: $('#merchantDefinedData_mddField_26').val(),
+                                        merchantDefinedData_mddField_27: $('#merchantDefinedData_mddField_27').val(),
+                                        merchantDefinedData_mddField_28: $('#merchantDefinedData_mddField_28').val(),
+                                        merchantDefinedData_mddField_29: $('#merchantDefinedData_mddField_29').val(),
+                                        merchantDefinedData_mddField_30: $('#merchantDefinedData_mddField_30').val(),
+                                        merchantDefinedData_mddField_31: $('#merchantDefinedData_mddField_31').val(),
+                                        merchantDefinedData_mddField_32: $('#merchantDefinedData_mddField_32').val(),
+                                        merchantDefinedData_mddField_33: $('#merchantDefinedData_mddField_33').val(),
+                                        merchantDefinedData_mddField_34: $('#merchantDefinedData_mddField_34').val(),
+                                        merchantDefinedData_mddField_35: $('#merchantDefinedData_mddField_35').val(),
+                                        merchantDefinedData_mddField_36: $('#merchantDefinedData_mddField_36').val(),
+                                        merchantDefinedData_mddField_37: $('#merchantDefinedData_mddField_37').val(),
+                                        merchantDefinedData_mddField_38: $('#merchantDefinedData_mddField_38').val(),
+                                        merchantDefinedData_mddField_39: $('#merchantDefinedData_mddField_39').val(),
+                                        merchantDefinedData_mddField_40: $('#merchantDefinedData_mddField_40').val(),
+                                        merchantDefinedData_mddField_41: $('#merchantDefinedData_mddField_41').val(),
+                                        merchantDefinedData_mddField_42: $('#merchantDefinedData_mddField_42').val(),
+                                        merchantDefinedData_mddField_43: $('#merchantDefinedData_mddField_43').val(),
+                                     },
+                                };
+
+                                $.ajax({
+                                    type:"POST",
+                                    url: '/payment/sessionSale.php',
+                                    data: data,
+                                    dataType:"json",
+                                    success:function(res){  
+                                        let html = '<span class="binding-title">Request：</span>';
+                                        let getHeader = res.getHeader.split('\r\n');
+                                        getHeader.forEach(el => {
+                                            if(el !== '') {
+                                                html += `${el}</br>`
+                                            }
+                                        });
+                                        html += '</br><span class="binding-title">Response Header：</span>';
+                                        let header = res.header.split('\r\n');
+                                        header.forEach(el => {
+                                            if(el !== '') {
+                                                html += `${el}</br>`
+                                            }
+                                        });
+                                        html += '</br><span class="binding-title">Response Body：</span>' + res.body;
+                                        const objectBody = JSON.parse(res.body);
+                                        $('#ng-binding').html(html);
+                                        $('#step1').hide();
+                                        $('#step2').show();
+                                        $('#aToken').val(objectBody.aToken);
+                                        $('#oId').val(objectBody.oId);
+                                    },
+                                    error:function(res){
+                                        console.error(res);
+                                        $('#sendPost').show();
+                                    }
+                                });
+                            });
+                        
+                            $('#sendSecure').on('click', () => {
+                                $('#sendSecure').hide();
+                                new Wintranx({
+                                    aToken: $('#aToken').val(),
+                                    oId: $('#oId').val(),
+                                    firstName: $('#secure_firstName').val(),
+                                    lastName: $('#secure_lastName').val(),
+                                    number: $('#secure_number').val(),
+                                    cvc: $('#secure_cvc').val(),
+                                    expiryMonth: $('#secure_expiryMonth').val(),
+                                    expiryYear: $('#secure_expiryYear').val(),
+                                    jsUrl: 'http://api.wintranxdev.com:9001'
+                                }, function (res) {
+                        // 返回值样例参考 备注
+                                    if (res) {
+                                        if (res.status === 'SUCCESS' && res.successMsg.resultCode =='10000') {
+                                            var url = decodeURIComponent(res.successMsg.redirectUrl)
+                                            window.location.href=url;//跳转到商户自己的页面
+                                        } else {
+                                            alert(res.status);
+                                            $('#sendSecure').show();
+                                        }
+                                    }
+                                });
+                            })
+                        })
+                     </script>
+                </div>
+                <div class="col-xs-7 result-panel">
+                    <p class="title">调试信息</p>
+                    <div class="result-panel-body">
+                        <p class="ng-binding" id="ng-binding"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

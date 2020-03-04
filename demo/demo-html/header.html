@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/global.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Wintranx - Demo</title>
+    <script>
+        function toAjax(data, url) {              
+            $.ajax({
+                type:"POST",
+                url: url,
+                data: data,
+                dataType:"json",
+                success:function(res){  
+                    let html = '<span class="binding-title">Request：</span>';
+                    let getHeader = res.getHeader.split('\r\n');
+                    getHeader.forEach(el => {
+                        if(el !== '') {
+                            html += `${el}</br>`
+                        }
+                    });
+                    html += '</br><span class="binding-title">Response Header：</span>';
+                    let header = res.header.split('\r\n');
+                    header.forEach(el => {
+                        if(el !== '') {
+                            html += `${el}</br>`
+                        }
+                    });
+                    html += '</br><span class="binding-title">Response Body：</span>' + res.body;
+                    $('#ng-binding').html(html);
+                    $('#sendPost').show();
+                },
+                error:function(res){
+                    console.error(res);
+                    $('#sendPost').show();
+                }
+            });
+        };
+
+
+        function getRandomNumber(max, min) {
+            for(let i = 0; i<10; i++) {
+                let x = Math.floor(Math.random() * (max - min + 1)) + min;
+                return x;
+            }
+        };
+
+        function getCurrency() {
+            const currencyList = ['USD', 'EUR', 'GBP', 'AUD', 'CHF', 'MYR', 'IDR', 'JPY', 'HKD', 'CAD', 'SGD', 'NZD', 'THB', 'KRW', 'CNY'];
+            let key = getRandomNumber(currencyList.length, 1);
+            return currencyList[key - 1];
+        }
+     </script>
+</head>
+<body>
+    <div id="wintranx">
+        <div class="header clearfix">
+            <p class="title"><img src="https://business.wintranx.com/images/logo.png" class="logo">Demo - Authorize</p>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">切换接口 
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="/demo/authorize.html">Authorize</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/capture.html">Capture</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/refund.html">Refund</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/sale.html">Sale</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/void.html">Void</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/pageSell.html">PageSell</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/sessionSale.html">SessionSale</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="row">
+                <div class="col-xs-5 result-form">
+                    <p class="title">请求参数</p>
