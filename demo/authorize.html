@@ -58,17 +58,17 @@
                                 <span class="d-input"><input type="text" id="notifyUrl" value="http://192.168.10.17:8551/notice/success"></span>
                             </p>
                             <p class="detail">
-                                <span class="d-label">Order Id</span>
+                                <span class="d-label">merOrderId</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="merOrderId" value=""></span>
                             </p>
                             <p class="detail">
-                                <span class="d-label">Trade Id</span>
+                                <span class="d-label">merTradeId</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="merTradeId" value=""></span>
                             </p>
                             <p class="detail">
-                                <span class="d-label">Currency</span>
+                                <span class="d-label">amount.currency</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="currency" value=""></span>
                             </p>
@@ -76,7 +76,7 @@
                                 Example：USD EUR GBP AUD CHF MYR IDR JPY HKD CAD SGD NZD THB KRW CNY
                             </p>
                             <p class="detail">
-                                <span class="d-label">Amount</span>
+                                <span class="d-label">amount.value</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="amount" value="1.00"></span>
                             </p>
@@ -128,12 +128,12 @@
                                     <span class="d-input"><input type="text" id="basket" value='[{"amountPerItem":"79.00","quantity":"3","productName":"goodname1","productSku":"sku100001"},{"amountPerItem":"67.00","quantity":"4","productName":"goodname2","productSku":"sku100002"}]'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Shopper IP</span>
+                                    <span class="d-label">shopperIP</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="shopperIP" value='192.168.101.117'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Customer Data</span>
+                                    <span class="d-label">customerData</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="customerData" value='CSDUSD'></span>
                                 </p>
@@ -143,17 +143,17 @@
                                     <span class="d-input"><input type="text" id="version" value='1.0'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Delivery Address</span>
+                                    <span class="d-label">deliveryAddress info</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="deliveryAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Billing Address</span>
+                                    <span class="d-label">billingAddress info</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="billingAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Mer Describe</span>
+                                    <span class="d-label">merDescribe info</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="merDescribe" value='{"merchantPhone":"15821900322","merchantName":"merchantName7890"}'></span>
                                 </p>
@@ -200,10 +200,10 @@
                                          shopperIP: $('#shopperIP').val(),
                                          customerData: $('#customerData').val(),
                                          version: $('#version').val(),
-                                         deliveryAddress: JSON.parse($('#deliveryAddress').val()),
+                                         deliveryAddress: $('#deliveryAddress').val(),
                                          notifyUrl: $('#notifyUrl').val(),
-                                         billingAddress: JSON.parse($('#billingAddress').val()),
-                                         merDescribe: JSON.parse($('#merDescribe').val()),
+                                         billingAddress: $('#billingAddress').val(),
+                                         merDescribe: $('#merDescribe').val(),
                                      };
                      
                                      toAjax(data, '/payment/authorize.php')

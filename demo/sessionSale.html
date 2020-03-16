@@ -59,22 +59,22 @@
                                 <span class="d-input"><input type="text" id="notifyUrl" value="http://192.168.10.17:8551/notice/success"></span>
                             </p>
                             <p class="detail">
-                                <span class="d-label">Shopper Url</span>
+                                <span class="d-label">shopperUrl</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="shopperUrl" value="http://192.168.10.17:8551/notice/success"></span>
                             </p>
                             <p class="detail">
-                                <span class="d-label">Order Id</span>
+                                <span class="d-label">merOrderId</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="merOrderId" value=""></span>
                             </p>
                             <p class="detail">
-                                <span class="d-label">Trade Id</span>
+                                <span class="d-label">merTradeId</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="merTradeId" value=""></span>
                             </p>
                             <p class="detail">
-                                <span class="d-label">Currency</span>
+                                <span class="d-label">amount.currency</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="currency" value=""></span>
                             </p>
@@ -82,7 +82,7 @@
                                 Example：USD EUR GBP AUD CHF MYR IDR JPY HKD CAD SGD NZD THB KRW CNY
                             </p>
                             <p class="detail">
-                                <span class="d-label">Amount</span>
+                                <span class="d-label">amount.value</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="amount" value="1.00"></span>
                             </p>
@@ -134,12 +134,12 @@
                                     <span class="d-input"><input type="text" id="basket" value='[{"amountPerItem":"79.00","quantity":"3","productName":"goodname1","productSku":"sku100001"},{"amountPerItem":"67.00","quantity":"4","productName":"goodname2","productSku":"sku100002"}]'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Shopper IP</span>
+                                    <span class="d-label">shopperIP</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="shopperIP" value='192.168.101.117'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Customer Data</span>
+                                    <span class="d-label">customerData</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="customerData" value='CSDUSD'></span>
                                 </p>
@@ -149,17 +149,17 @@
                                     <span class="d-input"><input type="text" id="version" value='1.0'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Delivery Address</span>
+                                    <span class="d-label">deliveryAddress info</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="deliveryAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Billing Address</span>
+                                    <span class="d-label">billingAddress info</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="billingAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">Mer Describe</span>
+                                    <span class="d-label">merDescribe info</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="merDescribe" value='{"merchantPhone":"15821900322","merchantName":"merchantName7890"}'></span>
                                 </p>
@@ -176,117 +176,117 @@
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 21</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_21" value='orderNumber123'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_21" value='orderNumber123' placeholder="mddData.merchantDefinedData_mddField_21"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 22</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_22" value='PC'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_22" value='PC' placeholder="mddData.merchantDefinedData_mddField_22"></span>
                                 </p>                                
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 23</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_23" value='Favorites'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_23" value='Favorites' placeholder="mddData.merchantDefinedData_mddField_23"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 24</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_24" value='lijiaxi'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_24" value='lijiaxi' placeholder="mddData.merchantDefinedData_mddField_24"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 25</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_25" value='30'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_25" value='30' placeholder="mddData.merchantDefinedData_mddField_25"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 26</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_26" value='N'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_26" value='N' placeholder="mddData.merchantDefinedData_mddField_26"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 27</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_27" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_27" value='Y' placeholder="mddData.merchantDefinedData_mddField_27"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 28</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_28" value='review@cybersource.com'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_28" value='review@cybersource.com' placeholder="mddData.merchantDefinedData_mddField_28"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 29</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_29" value='cybersource.com'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_29" value='cybersource.com' placeholder="mddData.merchantDefinedData_mddField_29"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 30</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_30" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_30" value='Y' placeholder="mddData.merchantDefinedData_mddField_30"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 31</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_31" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_31" value='Y' placeholder="mddData.merchantDefinedData_mddField_31"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 32</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_32" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_32" value='Y' placeholder="mddData.merchantDefinedData_mddField_32"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 33</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_33" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_33" value='Y' placeholder="mddData.merchantDefinedData_mddField_33"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 34</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_34" value='applepay'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_34" value='applepay' placeholder="mddData.merchantDefinedData_mddField_34"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 35</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_35" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_35" value='Y' placeholder="mddData.merchantDefinedData_mddField_35"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 36</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_36" value='512345'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_36" value='512345' placeholder="mddData.merchantDefinedData_mddField_36"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 37</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_37" value='CN'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_37" value='CN' placeholder="mddData.merchantDefinedData_mddField_37"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 38</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_38" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_38" value='Y' placeholder="mddData.merchantDefinedData_mddField_38"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 39</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_39" value='www.shopper.com'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_39" value='www.shopper.com' placeholder="mddData.merchantDefinedData_mddField_39"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 40</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_40" value='Electronic Product'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_40" value='Electronic Product' placeholder="mddData.merchantDefinedData_mddField_40"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 41</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_41" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_41" value='Y' placeholder="mddData.merchantDefinedData_mddField_41"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 42</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_42" value='Y'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_42" value='Y' placeholder="mddData.merchantDefinedData_mddField_42"></span>
                                 </p>
                                 <p class="detail">
                                     <span class="d-label">Mdd Data 43</span>
                                     <span class="d-symbol"> = </span>
-                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_43" value='normal'></span>
+                                    <span class="d-input"><input type="text" id="merchantDefinedData_mddField_43" value='normal' placeholder="mddData.merchantDefinedData_mddField_43"></span>
                                 </p>
                             </div>
                         </div>
@@ -379,10 +379,10 @@
                                      shopperIP: $('#shopperIP').val(),
                                      customerData: $('#customerData').val(),
                                      version: $('#version').val(),
-                                     deliveryAddress: $('#deliveryAddress').val() ? JSON.parse($('#deliveryAddress').val()) : '',
+                                     deliveryAddress: $('#deliveryAddress').val(),
                                      notifyUrl: $('#notifyUrl').val(),
-                                     billingAddress: $('#billingAddress').val() ? JSON.parse($('#billingAddress').val()) : '',
-                                     merDescribe: $('#merDescribe').val() ? JSON.parse($('#merDescribe').val()) : '',
+                                     billingAddress: $('#billingAddress').val(),
+                                     merDescribe: $('#merDescribe').val(),
                                      shopperUrl: $('#shopperUrl').val(),
                                      mddData: {
                                         merchantDefinedData_mddField_21: $('#merchantDefinedData_mddField_21').val(),
@@ -457,7 +457,7 @@
                                     cvc: $('#secure_cvc').val(),
                                     expiryMonth: $('#secure_expiryMonth').val(),
                                     expiryYear: $('#secure_expiryYear').val(),
-                                    jsUrl: 'http://api.wintranxdev.com:9001'
+                                    jsUrl: 'http://test.api.wintranx.com'
                                 }, function (res) {
                         // 返回值样例参考 备注
                                     if (res) {

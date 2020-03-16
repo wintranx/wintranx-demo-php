@@ -52,8 +52,13 @@
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="accountId" value="ACT90001"></span>
                             </p>
+                           <p class="detail">
+                                <span class="d-label">merTradeId</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="merTradeId" value=""></span>
+                            </p>
                             <p class="detail">
-                                <span class="d-label">TradeId Id</span>
+                                <span class="d-label">TradeId</span>
                                 <span class="d-symbol"> = </span>
                                 <span class="d-input"><input type="text" id="tradeId" value=""></span>
                             </p>
@@ -65,12 +70,12 @@
 
                         <script>
                             $(function() {
-                                $('#tradeId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
                                 $('#sendPost').on('click', () => {
                                     $('#sendPost').hide();
                                     let data = {
                                         accountId: $('#accountId').val(),
                                         tradeId: $('#tradeId').val(),
+                                        merTradeId: $('#merTradeId').val(),
                                         notifyUrl: $('#notifyUrl').val()
                                     };
 
