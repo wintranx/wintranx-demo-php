@@ -1,7 +1,6 @@
 <?php
 	$postInfo = $_POST;
 	$host = 'http://test.api.wintranx.com';
-//    $host = 'http://localhost:8000';
 	$method = "POST";
 	$md5Key = 'xvjaOk3bBDwpnv45aAkAN3vtj5z3fNxfICnnmSoAkxbq10Z9eVJyqrCn1nYeJROA2sTdREsnz5h6jssdlJwOxiRb7AnZ4KX1Y2dZZw6Hjse3dMLOUHnLBX7WXEIadKpb';
 	$authorizeUrl = $host . '/wintranx-order/api/transaction/authorize';

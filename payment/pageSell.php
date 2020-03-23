@@ -1,7 +1,7 @@
 <?php
 	$postInfo = $_POST;
-	$md5Key = 'xvjaOk3bBDwpnv45aAkAN3vtj5z3fNxfICnnmSoAkxbq10Z9eVJyqrCn1nYeJROA2sTdREsnz5h6jssdlJwOxiRb7AnZ4KX1Y2dZZw6Hjse3dMLOUHnLBX7WXEIadKpb';
-
+	$md5Key = 'E30D1kozivwvYys8V5OjsVTgWDc0B73q2H0Jr4fkuNWWzuZkpuHIIGq0DL6z6iwCOr5tZVcIxGE8Ou6Z2hIu4UE0JRm7nV1arpj0qTQ7KxxZU4x906NRWgPLHaEJYt6T';
+    $postInfo['basket'] = json_decode($postInfo['basket'], true);
     $postInfo['deliveryAddress'] = json_decode($postInfo['deliveryAddress'], true);
     $postInfo['billingAddress'] = json_decode($postInfo['billingAddress'], true);
     $postInfo['merDescribe'] = json_decode($postInfo['merDescribe'], true);
