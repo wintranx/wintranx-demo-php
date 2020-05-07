@@ -38,6 +38,10 @@
                     <li><a href="/demo/pageSell.html">PageSell</a></li>
                     <li class="divider"></li>
                     <li><a href="/demo/sessionSale.html">SessionSale</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/apiPlusAuthorize.html">ApiPlusAuthorize</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/demo/apiPlusSale.html">ApiPlusSale</a></li>
                 </ul>
             </div>
         </div>
@@ -329,14 +333,6 @@
                                          currency: $('#currency').val(),
                                          value: $('#amount').val(),
                                      },
-                                     card: {
-                                         firstName: $('#firstName').val(),
-                                         lastName: $('#lastName').val(),
-                                         number: $('#number').val(),
-                                         cvc: $('#cvc').val(),
-                                         expiryMonth: $('#expiryMonth').val(),
-                                         expiryYear: $('#expiryYear').val(),
-                                     },
                                      basket: $('#basket').val(),
                                      shopperIP: $('#shopperIP').val(),
                                      customerData: $('#customerData').val(),
@@ -423,7 +419,7 @@
                                 }, function (res) {
                         // 返回值样例参考 备注
                                     if (res) {
-                                        if (res.status === 'SUCCESS' && res.successMsg.resultCode =='10000') {
+                                        if (res.status === 'SUCCESS') {
                                             var url = decodeURIComponent(res.successMsg.redirectUrl)
                                             window.location.href=url;//跳转到商户自己的页面
                                         } else {

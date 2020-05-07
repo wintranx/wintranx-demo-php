@@ -1,18 +1,19 @@
 <?php
 	$postInfo = $_POST;
 	$host = 'http://test.api.wintranx.com';
-//    $host = 'http://localhost:8000';
 	$method = "POST";
-	$md5Key = 'xvjaOk3bBDwpnv45aAkAN3vtj5z3fNxfICnnmSoAkxbq10Z9eVJyqrCn1nYeJROA2sTdREsnz5h6jssdlJwOxiRb7AnZ4KX1Y2dZZw6Hjse3dMLOUHnLBX7WXEIadKpb';
-	$authorizeUrl = $host . '/wintranx-order/api/query/transaction';
-
+	$md5Key = 'E30D1kozivwvYys8V5OjsVTgWDc0B73q2H0Jr4fkuNWWzuZkpuHIIGq0DL6z6iwCOr5tZVcIxGE8Ou6Z2hIu4UE0JRm7nV1arpj0qTQ7KxxZU4x906NRWgPLHaEJYt6T';
+	$authorizeUrl = $host . '/wintranx-order/api/transaction/apiplus/pay';
+    $postInfo['basket'] = json_decode($postInfo['basket'], true);
+    $postInfo['deliveryAddress'] = json_decode($postInfo['deliveryAddress'], true);
+    $postInfo['billingAddress'] = json_decode($postInfo['billingAddress'], true);
+    $postInfo['merDescribe'] = json_decode($postInfo['merDescribe'], true);
 	$postInfo['md5Key'] = $md5Key;
     //去掉值为空的键值对
     $postInfo = array_filter($postInfo);
 	$postInfo['tf_sign'] = getSing($postInfo);
 
 	$authorize = post($host, $authorizeUrl, $method, json_encode($postInfo, 320));
-
 	echo json_encode($authorize);
 
 	// 发送POST请求
@@ -21,6 +22,8 @@
 		
 		curl_setopt($curl, CURLOPT_HTTPGET, true);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); //TRUE 将curl_exec()获取的信息以字符串返回，而不是直接输出。
+
+
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 			'X-AjaxPro-Method:ShowList',
 			'Content-Type: application/json; charset=utf-8',

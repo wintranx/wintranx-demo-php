@@ -24,7 +24,7 @@
 						if(is_array($val)) {
 							if(count($val) == count($val, 1)) {
 								ksort($val);
-								$val = json_encode($val, JSON_FORCE_OBJECT);
+								$val = json_encode($val, 320);
 							} else {
 								foreach($val as $key => $value) {
 									ksort($val[$key]);

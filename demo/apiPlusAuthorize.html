@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="./css/global.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://test.secure.wintranx.com/js/wintranx-pay.min.js"></script>
 	<script src="./js/plug.js"></script>
     <title>Wintranx - Demo</title>
 </head>
 <body>
     <div id="wintranx">
         <div class="header clearfix">
-            <p class="title"><img src="https://business.wintranx.com/images/logo.png" class="logo">Demo - PageSell</p>
+            <p class="title"><img src="https://business.wintranx.com/images/logo.png" class="logo">Demo - ApiPlusAuthorize</p>
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">切换接口 
                     <span class="caret"></span>
@@ -46,9 +47,9 @@
         </div>
         <div class="main">
             <div class="row">
-                <div class="col-xs-12 result-form">
+                <div class="col-xs-5 result-form">
                     <p class="title">请求参数</p>
-                    <div class="result-form-body">
+                    <div class="result-form-body" id="step1">
                         <div class="r-f-b-block">
                             <p class="title">Certificate</p>
                             <p class="detail">
@@ -91,6 +92,39 @@
                             </p>
                         </div>
                         <div class="r-f-b-block">
+                            <p class="title">Card Info</p>
+                            <p class="detail">
+                                <span class="d-label">First Name</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="firstName" value="Jesse"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Last Name</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="lastName" value="Li"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Card Number</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="number" value="4000000000000002"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Expiry Month</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="expiryMonth" value="12"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">Expiry Year</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="expiryYear" value="2020"></span>
+                            </p>
+                            <p class="detail">
+                                <span class="d-label">CVC</span>
+                                <span class="d-symbol"> = </span>
+                                <span class="d-input"><input type="text" id="cvc" value="001"></span>
+                            </p>
+                        </div>
+                        <div class="r-f-b-block">
                             <p class="title">Other
                                 <a data-toggle="collapse" data-parent="#accordion" class="collapse-btn" href="#collapseThree" aria-expanded="false">
                                     <i class="fa fa-chevron-up"></i>
@@ -114,7 +148,7 @@
                                     <span class="d-input"><input type="text" id="version" value='1.0'></span>
                                 </p>
                                 <p class="detail">
-                                    <span class="d-label">deliveryAddressInfo</span>
+                                    <span class="d-label">deliveryAddress info</span>
                                     <span class="d-symbol"> = </span>
                                     <span class="d-input"><input type="text" id="deliveryAddress" value='{"country":"US","firstName":"JiaXi","lastName":"Li","stateOrProvince":"NY","city":"New York","phone":"13226264455","houseNumberOrName":"11","street":"1295 Charleston Road","postalCode":"200120","email":"review@cybersource.com"}'></span>
                                 </p>
@@ -257,101 +291,132 @@
                         </div>
                         <div class="r-f-b-block">
                             <button type="button" class="btn btn-primary" id="sendPost">发送请求</button>
-
-                            <form action="http://test.api.wintranx.com/wintranx-order/api/transaction/goPayPage" id="saleForm" method="post">
-                                <input type="hidden" name="requestJson" id="requestJson" value='' />
-                          </form>
-                          
                         </div>
-                        <script>
-                            $(function () {
-                                $('#toSecure').hide();
-                                $('#merOrderId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
-                                $('#merTradeId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
-                                const currency = getCurrency();
-                                if(currency === 'IDR' || currency === 'KRW' || currency === 'JPY') {
-                                    $('#amount').val(getRandomNumber(100, 1));
-                                } else {
-                                    $('#amount').val(`${getRandomNumber(100, 1)}.00`);
-                                }
-                                $('#currency').val(currency);
-                     
-                                $('#sendPost').on('click', () => {
-                                     $('#sendPost').hide();
-                                     let data = {
-                                         accountId: $('#accountId').val(),
-                                         merOrderId: $('#merOrderId').val(),
-                                         merTradeId: $('#merTradeId').val(),
-                                         amount: {
-                                             currency: $('#currency').val(),
-                                             value: $('#amount').val(),
-                                         },
-                                         card: {
-                                             firstName: $('#firstName').val(),
-                                             lastName: $('#lastName').val(),
-                                             number: $('#number').val(),
-                                             cvc: $('#cvc').val(),
-                                             expiryMonth: $('#expiryMonth').val(),
-                                             expiryYear: $('#expiryYear').val(),
-                                         },
-                                         basket: $('#basket').val(),
-                                         shopperIP: $('#shopperIP').val(),
-                                         customerData: $('#customerData').val(),
-                                         version: $('#version').val(),
-                                         deliveryAddress: $('#deliveryAddress').val(),
-                                         notifyUrl: $('#notifyUrl').val(),
-                                         billingAddress: $('#billingAddress').val(),
-                                         merDescribe: $('#merDescribe').val(),
-                                         shopperUrl: $('#shopperUrl').val(),
-                                         mddData: {
-                                            merchantDefinedData_mddField_21: $('#merchantDefinedData_mddField_21').val(),
-                                            merchantDefinedData_mddField_22: $('#merchantDefinedData_mddField_22').val(),
-                                            merchantDefinedData_mddField_23: $('#merchantDefinedData_mddField_23').val(),
-                                            merchantDefinedData_mddField_24: $('#merchantDefinedData_mddField_24').val(),
-                                            merchantDefinedData_mddField_25: $('#merchantDefinedData_mddField_25').val(),
-                                            merchantDefinedData_mddField_26: $('#merchantDefinedData_mddField_26').val(),
-                                            merchantDefinedData_mddField_27: $('#merchantDefinedData_mddField_27').val(),
-                                            merchantDefinedData_mddField_28: $('#merchantDefinedData_mddField_28').val(),
-                                            merchantDefinedData_mddField_29: $('#merchantDefinedData_mddField_29').val(),
-                                            merchantDefinedData_mddField_30: $('#merchantDefinedData_mddField_30').val(),
-                                            merchantDefinedData_mddField_31: $('#merchantDefinedData_mddField_31').val(),
-                                            merchantDefinedData_mddField_32: $('#merchantDefinedData_mddField_32').val(),
-                                            merchantDefinedData_mddField_33: $('#merchantDefinedData_mddField_33').val(),
-                                            merchantDefinedData_mddField_34: $('#merchantDefinedData_mddField_34').val(),
-                                            merchantDefinedData_mddField_35: $('#merchantDefinedData_mddField_35').val(),
-                                            merchantDefinedData_mddField_36: $('#merchantDefinedData_mddField_36').val(),
-                                            merchantDefinedData_mddField_37: $('#merchantDefinedData_mddField_37').val(),
-                                            merchantDefinedData_mddField_38: $('#merchantDefinedData_mddField_38').val(),
-                                            merchantDefinedData_mddField_39: $('#merchantDefinedData_mddField_39').val(),
-                                            merchantDefinedData_mddField_40: $('#merchantDefinedData_mddField_40').val(),
-                                            merchantDefinedData_mddField_41: $('#merchantDefinedData_mddField_41').val(),
-                                            merchantDefinedData_mddField_42: $('#merchantDefinedData_mddField_42').val(),
-                                            merchantDefinedData_mddField_43: $('#merchantDefinedData_mddField_43').val(),
-                                         },
-                                    };
+                    </div>
 
-                                    $.ajax({
-                                        type:"POST",
-                                        url: '/payment/pageSell.php',
-                                        data: data,
-                                        dataType:"json",
-                                        success:function(res){  
-                                            $('#requestJson').val( JSON.stringify(res.requestJson));
-                                            $('#saleForm').submit();
-                                        },
-                                        error:function(res){
-                                            console.error(res);
-                                            $('#sendPost').show();
-                                        }
-                                    });
+                    <script>
+                        $(function () {
+                            $('#toSecure').hide();
+                            $('#merOrderId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
+                            $('#merTradeId').val(`${Math.round(new Date())}${getRandomNumber(999999, 100000)}`);
+                            const currency = getCurrency();
+                            if(currency === 'IDR' || currency === 'KRW' || currency === 'JPY') {
+                                $('#amount').val(getRandomNumber(100, 1));
+                            } else {
+                                $('#amount').val(`${getRandomNumber(100, 1)}.00`);
+                            }
+                            $('#currency').val(currency);
+                 
+                            $('#sendPost').on('click', () => {
+                                 $('#sendPost').hide();
+                                 let data = {
+                                     accountId: $('#accountId').val(),
+                                     merOrderId: $('#merOrderId').val(),
+                                     merTradeId: $('#merTradeId').val(),
+                                     amount: {
+                                         currency: $('#currency').val(),
+                                         value: $('#amount').val(),
+                                     },
+                                     card: {
+                                         firstName: $('#firstName').val(),
+                                         lastName: $('#lastName').val(),
+                                         number: $('#number').val(),
+                                         cvc: $('#cvc').val(),
+                                         expiryMonth: $('#expiryMonth').val(),
+                                         expiryYear: $('#expiryYear').val(),
+                                     },
+                                     basket: $('#basket').val(),
+                                     shopperIP: $('#shopperIP').val(),
+                                     customerData: $('#customerData').val(),
+                                     version: $('#version').val(),
+                                     deliveryAddress: $('#deliveryAddress').val(),
+                                     notifyUrl: $('#notifyUrl').val(),
+                                     billingAddress: $('#billingAddress').val(),
+                                     merDescribe: $('#merDescribe').val(),
+                                     shopperUrl: $('#shopperUrl').val(),
+                                     mddData: {
+                                        merchantDefinedData_mddField_21: $('#merchantDefinedData_mddField_21').val(),
+                                        merchantDefinedData_mddField_22: $('#merchantDefinedData_mddField_22').val(),
+                                        merchantDefinedData_mddField_23: $('#merchantDefinedData_mddField_23').val(),
+                                        merchantDefinedData_mddField_24: $('#merchantDefinedData_mddField_24').val(),
+                                        merchantDefinedData_mddField_25: $('#merchantDefinedData_mddField_25').val(),
+                                        merchantDefinedData_mddField_26: $('#merchantDefinedData_mddField_26').val(),
+                                        merchantDefinedData_mddField_27: $('#merchantDefinedData_mddField_27').val(),
+                                        merchantDefinedData_mddField_28: $('#merchantDefinedData_mddField_28').val(),
+                                        merchantDefinedData_mddField_29: $('#merchantDefinedData_mddField_29').val(),
+                                        merchantDefinedData_mddField_30: $('#merchantDefinedData_mddField_30').val(),
+                                        merchantDefinedData_mddField_31: $('#merchantDefinedData_mddField_31').val(),
+                                        merchantDefinedData_mddField_32: $('#merchantDefinedData_mddField_32').val(),
+                                        merchantDefinedData_mddField_33: $('#merchantDefinedData_mddField_33').val(),
+                                        merchantDefinedData_mddField_34: $('#merchantDefinedData_mddField_34').val(),
+                                        merchantDefinedData_mddField_35: $('#merchantDefinedData_mddField_35').val(),
+                                        merchantDefinedData_mddField_36: $('#merchantDefinedData_mddField_36').val(),
+                                        merchantDefinedData_mddField_37: $('#merchantDefinedData_mddField_37').val(),
+                                        merchantDefinedData_mddField_38: $('#merchantDefinedData_mddField_38').val(),
+                                        merchantDefinedData_mddField_39: $('#merchantDefinedData_mddField_39').val(),
+                                        merchantDefinedData_mddField_40: $('#merchantDefinedData_mddField_40').val(),
+                                        merchantDefinedData_mddField_41: $('#merchantDefinedData_mddField_41').val(),
+                                        merchantDefinedData_mddField_42: $('#merchantDefinedData_mddField_42').val(),
+                                        merchantDefinedData_mddField_43: $('#merchantDefinedData_mddField_43').val(),
+                                     },
+                                };
+
+                                $.ajax({
+                                    type:"POST",
+                                    url: '/payment/apiPlusAuthorize.php',
+                                    data: data,
+                                    dataType:"json",
+                                    success:function(res){  
+                                        let html = '<span class="binding-title">Request：</span>';
+                                        let getHeader = res.getHeader.split('\r\n');
+                                        getHeader.forEach(el => {
+                                            if(el !== '') {
+                                                html += `${el}</br>`
+                                            }
+                                        });
+                                        html += '</br><span class="binding-title">Response Header：</span>';
+                                        let header = res.header.split('\r\n');
+                                        header.forEach(el => {
+                                            if(el !== '') {
+                                                html += `${el}</br>`
+                                            }
+                                        });
+                                        html += '</br><span class="binding-title">Response Body：</span>' + res.body;
+                                        const objectBody = JSON.parse(res.body);
+                                        $('#ng-binding').html(html);
+                                        new Wintranx({
+                                            aToken: objectBody.aToken,
+                                            oId: objectBody.oId,                               
+                                            jsUrl: 'http://test.api.wintranx.com',
+                                            tranType: 'api'
+                                        }, function (res) {
+                                            console.log(res)
+                                // 返回值样例参考 备注
+                                            if (res) {
+                                                if (res.status === 'SUCCESS') {
+                                                    var url = decodeURIComponent(res.successMsg.redirectUrl)
+                                                    window.location.href=url;//跳转到商户自己的页面
+                                                } else {
+                                                    alert(res.status);
+                                                    $('#sendSecure').show();
+                                                }
+                                            }
+                                        });
+                                    },
+                                    error:function(res){
+                                        console.error(res);
+                                        $('#sendPost').show();
+                                    }
                                 });
-                            
-                                $('#toSecure').on('click', () => {
-                                    let html = $('#toSecure').data('url');
-                                    window.location.href = html
-                                })
-                            })
-                         </script>
+                            });
+                        
+                        })
+                     </script>
+                </div>
+                <div class="col-xs-7 result-panel">
+                    <p class="title">调试信息</p>
+                    <div class="result-panel-body">
+                        <p class="ng-binding" id="ng-binding"></p>
                     </div>
                 </div>
             </div>

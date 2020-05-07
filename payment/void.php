@@ -42,7 +42,7 @@
 		$headerSize = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
 		$res['header'] = substr($response, 0, $headerSize);
 		$res['body'] = substr($response, $headerSize);
-		$res['getHeader'] = curl_getinfo($curl, CURLINFO_HEADER_OUT) . 'body: ' . stripslashes_deep(json_encode($data_string, JSON_FORCE_OBJECT)); //官方文档描述是“发送请求的字符串”，其实就是请求的header。这个就是直接查看请求header，因为上面允许查看		
+		$res['getHeader'] = curl_getinfo($curl, CURLINFO_HEADER_OUT) . 'body: ' . stripslashes_deep(json_encode($data_string, 320)); //官方文档描述是“发送请求的字符串”，其实就是请求的header。这个就是直接查看请求header，因为上面允许查看		
 		curl_close($curl);
 		return $res;
 	};
@@ -64,7 +64,7 @@
 						if(is_array($val)) {
 							if(count($val) == count($val, 1)) {
 								ksort($val);
-								$val = json_encode($val, JSON_FORCE_OBJECT);
+								$val = json_encode($val, 320);
 							} else {
 								foreach($val as $key => $value) {
 									ksort($val[$key]);
